@@ -1,0 +1,30 @@
+# ===============================
+# Spring Boot 기본 설정 파일
+# ===============================
+
+server:
+  port: 8081  # auth-service가 사용할 포트 번호
+
+spring:
+  application:
+    name: auth-service  # 서비스 이름 (Eureka 등에서 사용 가능)
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/solplan?serverTimezone=Asia/Seoul&characterEncoding=UTF-8  # 연결할 MySQL DB 주소
+    username: root                               # DB 사용자명
+    password: mysql0529!                         # DB 비밀번호
+    driver-class-name: com.mysql.cj.jdbc.Driver  # 드라이버 클래스
+
+  jpa:
+    hibernate:
+      ddl-auto: update    # 테이블 자동 생성 또는 업데이트 (create, none, validate 등도 가능)
+                          # 개발 초기엔 create / update 사용, 운영은 validate / none
+    show-sql: true        # 실행되는 SQL을 콘솔에 출력
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect  # MySQL 전용 방언 설정
+
+  # timezone 설정
+  jackson:
+    time-zone: Asia/Seoul

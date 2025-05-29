@@ -38,3 +38,11 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+allprojects {
+    group = 'com.solplan'
+    version = '1.0.0'
+    repositories {
+        mavenCentral()
+    }
+}

@@ -29,6 +29,7 @@
 *.iml
 *.ipr
 *.iws
+src/HELP.md
 
 # ==========================
 # STS (Spring Tool Suite)
@@ -79,3 +80,16 @@ Thumbs.db
 *.orig
 *.rej
 *.swp
+
+# =============== Multi-Module 구조 예외 처리 ===============
+# 각 모듈 내 build 디렉토리 무시
+auth-service/build/
+gateway/build/
+user-service/build/
+schedule-service/build/
+
+# 각 모듈 내 .iml 등 IntelliJ 설정파일 무시
+auth-service/*.iml
+gateway/*.iml
+user-service/*.iml
+schedule-service/*.iml
