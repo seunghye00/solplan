@@ -6,19 +6,19 @@ Spring Boot 기반 여행일정 공유 플랫폼 백엔드 프로젝트
 
 solplan-backend/
 
-├── auth-service/ # 사용자 인증 및 JWT
+├── auth-service/       # 사용자 인증 및 JWT
 
-├── gateway/ # Spring Cloud Gateway (API 라우팅)
+├── gateway/            # Spring Cloud Gateway (API 라우팅)
 
-├── user-service/ # 사용자 정보 관리 (CRUD)
+├── user-service/       # 사용자 정보 관리 (CRUD)
 
-├── schedule-service/ # 여행 일정 관리
+├── schedule-service/   # 여행 일정 관리
 
-├── build.gradle # 루트 빌드 설정
+├── build.gradle        # 루트 빌드 설정
 
-├── settings.gradle # 모듈 등록 파일
+├── settings.gradle     # 모듈 등록 파일
 
-└── .gitignore # 공통 및 모듈별 예외 설정
+└── .gitignore          # 공통 및 모듈별 예외 설정
 
 markdown
 복사
