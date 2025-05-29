@@ -1,37 +1,81 @@
-HELP.md
-.gradle
-build/
+# ==========================
+# Java & Spring Boot
+# ==========================
+*.class
+*.jar
+*.war
+*.ear
+
+# Build directories
+/build/
+/target/
+/bin/
+/out/
+
+# ==========================
+# Gradle
+# ==========================
+.gradle/
+/.gradle-cache/
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# Gradle build outputs
+**/build/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# ==========================
+# IntelliJ IDEA
+# ==========================
+.idea/
 *.iml
 *.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+*.iws
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# ==========================
+# STS (Spring Tool Suite)
+# ==========================
+.apt_generated/
+.factorypath
+.project
+.classpath
+.settings/
+.springBeans
+.sts4-cache
 
-### VS Code ###
+# ==========================
+# VS Code
+# ==========================
 .vscode/
+
+# ==========================
+# Logs & Reports
+# ==========================
+logs/
+*.log
+test-output/
+coverage/
+
+# ==========================
+# Environment / Secrets
+# ==========================
+.env
+*.local
+application-local.yml
+application-*.yml
+
+# ==========================
+# Node.js (React 대비)
+# ==========================
+node_modules/
+
+# ==========================
+# OS-specific files
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Git
+# ==========================
+*.orig
+*.rej
+*.swp
