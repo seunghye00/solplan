@@ -1,4 +1,4 @@
-package com.solplan.auth.domain;
+package com.solplan.authservice.test.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,7 +6,7 @@ import lombok.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class TestUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // MySQL auto_increment
@@ -20,7 +20,7 @@ public class User {
 
     // 생성자
     @Builder
-    public User(String email, String name) {
+    public TestUser(String email, String name) {
         this.email = email;
         this.name = name;
     }
