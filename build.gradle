@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.5.0'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.springframework.boot' version '3.5.0' // Spring Boot 플러그인
+    id 'io.spring.dependency-management' version '1.1.7' // 의존성 버전 자동 관리
 }
 
 group = 'com.solplan'
@@ -9,34 +9,45 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(17) // Java 17 버전 사용
     }
 }
 
 configurations {
     compileOnly {
-        extendsFrom annotationProcessor
+        extendsFrom annotationProcessor // annotationProcessor를 compileOnly에 포함
     }
 }
 
 repositories {
-    mavenCentral()
+    mavenCentral() // 메이븐 중앙 저장소에서 의존성 다운로드
 }
 
 dependencies {
+    // 웹, 시큐리티, JPA 기본 스타터
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Lombok (코드 자동 생성 도구)
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // ✅ 테스트 코드에서도 Lombok 사용 가능하도록 추가
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    // MySQL JDBC 드라이버
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // 테스트용 라이브러리
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+    useJUnitPlatform() // JUnit 5 사용 설정
 }
 
 allprojects {
