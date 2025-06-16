@@ -2,6 +2,7 @@ package com.solplan.authservice.repository;
 
 import com.solplan.authservice.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
  * - 메서드 이름만으로도 쿼리를 자동 생성하는 기능을 활용할 수 있음
  * - 추가적으로 필요한 검색 기능은 직접 메서드로 선언하면 Spring이 구현체를 자동 생성함
  */
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     /**
@@ -34,5 +36,21 @@ public interface UserRepository extends JpaRepository<User, Long> {
      */
     Optional<User> findByUserId(String userId);
 
-    // 필요한 다른 메서드는 추후 추가 예정 2025.05.30
+    /**
+     * userId가 이미 존재하는지 여부를 확인하는 메서드
+     * - 회원가입 시 중복된 아이디를 방지하기 위해 사용
+     *
+     * @param userId 중복 확인할 사용자 아이디
+     * @return 중복된 경우 true, 없으면 false
+     */
+    boolean existsByUserId(String userId);
+
+    /**
+     * email이 이미 존재하는지 여부를 확인하는 메서드
+     * - 회원가입 시 중복된 이메일을 방지하기 위해 사용
+     *
+     * @param email 중복 확인할 이메일 주소
+     * @return 중복된 경우 true, 없으면 false
+     */
+    boolean existsByEmail(String email);
 }
