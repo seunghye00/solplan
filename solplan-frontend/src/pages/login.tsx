@@ -1,13 +1,32 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [userId, setUserId] = useState('');
   const [pwd, setPwd] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('로그인 시도:', { userId, pwd });
-    // TODO: API 연동
+    
+    try {
+    const res = await axios.post('http://localhost:8081/api/users/login', {
+      userId,
+      pwd,
+    });
+
+    alert(res.data.message); // "로그인 성공"
+
+    if (res.data.role === 'ADMIN') {
+      navigate('/admin');
+    } else {
+      navigate('/home');
+    }
+  } catch (err: any) {
+    alert(err.response?.data?.message || '로그인 실패');
+  }
   };
 
   return (
@@ -32,8 +51,11 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit" style={{ marginTop: 16 }}>
+        <button type="submit" onClick={handleSubmit} style={{ marginTop: 16 }}>
           로그인
+        </button>
+        <button type="button" onClick={() => navigate('/signup')} style={{ marginTop: 16 }}>
+          회원가입
         </button>
       </form>
     </div>

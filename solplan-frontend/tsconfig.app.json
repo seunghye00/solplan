@@ -6,6 +6,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true, /* import 시 대소문자 불일치 방지 */
 
     /* Bundler mode */
     "moduleResolution": "bundler",

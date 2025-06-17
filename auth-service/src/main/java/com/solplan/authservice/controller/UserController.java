@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
@@ -28,9 +30,19 @@ public class UserController {
 
     // 로그인 API
     @PostMapping("/login")
-    public ResponseEntity<UserLoginResponse> login(@RequestBody UserLoginRequest dto) {
-        User user = userService.login(dto);
-        return ResponseEntity.ok(new UserLoginResponse(user.getName(), user.getRole()));
+    public ResponseEntity<?> login(@RequestBody UserLoginRequest dto) {
+        try {
+            User user = userService.login(dto);
+            return ResponseEntity.ok().body(Map.of(
+                    "message", "로그인 성공",
+                    "userId", user.getUserId(),
+                    "role", user.getRole().name()
+            ));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(Map.of(
+                    "message", e.getMessage()
+            ));
+        }
     }
 
 }
