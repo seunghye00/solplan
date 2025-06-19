@@ -12,21 +12,25 @@ const Login = () => {
     console.log('로그인 시도:', { userId, pwd });
     
     try {
-    const res = await axios.post('http://localhost:8081/api/users/login', {
-      userId,
-      pwd,
-    });
+      const res = await axios.post('http://localhost:8081/api/users/login', {
+        userId,
+        pwd,
+      });
 
-    alert(res.data.message); // "로그인 성공"
+      alert(res.data.message); // "로그인 성공"
 
-    if (res.data.role === 'ADMIN') {
-      navigate('/admin');
-    } else {
-      navigate('/home');
+      // 로그인 성공 시 사용자 정보를 localStorage에 저장
+      localStorage.setItem('userId', res.data.userId);
+      localStorage.setItem('role', res.data.role);
+
+      if (res.data.role === 'ADMIN') {
+        navigate('/admin');
+      } else {
+        navigate('/home');
+      }
+    } catch (err: any) {
+      alert(err.response?.data?.message || '로그인 실패');
     }
-  } catch (err: any) {
-    alert(err.response?.data?.message || '로그인 실패');
-  }
   };
 
   return (
